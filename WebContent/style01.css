@@ -95,7 +95,7 @@ tr.colore2 {
     text-align: left;
 }
 tr.colore3 {
-    background-color: #bbb;
+    background-color: #80b5ea;
     text-align: left;
 }
 tr.colore4 {
@@ -152,13 +152,13 @@ a:link:hover {
     border:1px solid #84bbf3;
     display:inline-block;
     cursor:pointer;
-    color:#ffffff;
+    color:#000;
     font-family:Arial;
-    font-size:15px;
+    font-size:12px;
     font-weight:bold;
-    padding:6px 24px;
+    padding:4px 24px;
     text-decoration:none;
-    text-shadow:0px 1px 0px #528ecc;
+    
 }
 .myOKButton:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa));

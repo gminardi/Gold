@@ -15,22 +15,26 @@
 
 
         <h1>Modifica Contratto</h1>
-        <div style="color: blue">
+<!--        <div style="color: blue">
             Per modificare i dati di un contratto esistente inserisci il NUMERO CONTRATTO qui sotto oppure clicca sul NUMERO CONTRATTO (#) nella tabella in basso.<br>  
             Per inserire un <strong>NUOVO CONTRATTO</strong> seleziona prima un dipendente dalla sezione Anagrafica Dipendenti.
         </div>
-        <br/>
+        <br/>-->
     <s:form action="viewContratto">
+        Per modificare i dati di un contratto esistente inserisci il NUMERO CONTRATTO qui sotto oppure clicca sul NUMERO CONTRATTO (#) nella tabella in basso.<br>  
+            Per inserire un <strong>NUOVO CONTRATTO</strong> seleziona prima un dipendente dalla sezione Anagrafica Dipendenti.
         <s:textfield label="N° Contratto" name="n_contratto"/>
         <s:submit class="myOKButton" align="right" value="   MODIFICA   "></s:submit>
-    </s:form>
-    <hr/>        
+    </s:form><hr/>    
 
     <table style="width: 80%; background-color: white">
         <tr>
-            <td style="font-size: medium"><h1>Contratti</h1></td>
-            <td><form action="listacontratti"><input class="myOKButton" type="submit" value="Ordina Tabella per COGNOME"></form></td>
-            <td><form action="listacontrattiprofilo"><input class="myOKButton" type="submit" value="Ordina Tabella per PROFILO"></form></td>
+            <td style="font-size: medium"><h1>Contratti</h1>I contratti cessati sono evidenziati in blu chiaro.</td><br/>
+        
+            <td><form action="getTabellaContratti"><input class="myOKButton" type="submit" value="Tutti per COGNOME"></form></td>
+            <td><form action="getTabellaContrattiProfilo"><input class="myOKButton" type="submit" value="Tutti per PROFILO"></form></td>
+            <td><form action="getTabellaContrattiCessati"><input class="myOKButton" type="submit" value="Contratti CESSATI"></form></td>
+            <td><form action="getTabellaContrattiNonCessati"><input class="myOKButton" type="submit" value="Contratti ATTIVI"></form></td>
         </tr>
     </table>
     <body>

@@ -20,7 +20,7 @@
                         <table  class="tableButton">
                             <tbody>
                                 <tr>
-                                    <td><s:submit value="          Annulla          " action="listacontratti"/></td>
+                                    <td><s:submit value="          Annulla          " action="getTabellaContratti"/></td>
                                 </tr>
                             </tbody>
                         </table>

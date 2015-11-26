@@ -105,7 +105,7 @@
                         <table  class="tableButton">
                             <tbody>
                                 <tr>
-                                    <td><s:submit class="myCancelButton" value="          Annulla          " action="listacontratti"/></td>
+                                    <td><s:submit class="myCancelButton" value="          Annulla          " action="getTabellaContratti"/></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -29,7 +29,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DipendenteDao {
-
+    
+    private String queryContratti="SELECT ddl.cognome, ddl.nome, d.nome as 'nome_dip', d.cognome as 'cognome_dip', c.data_assunz, c.data_cessaz, c.idcontratto, c.prospetto_duff from golddatabase.contratto c "
+                    + " INNER JOIN golddatabase.anagrafica_ddl ddl ON c.anagrafica_ddl_idanagrafica_ddl=ddl.idanagrafica_ddl"
+                    + " INNER JOIN golddatabase.anagrafica_dipe d ON c.anagrafica_dipe_idanagrafica_dipe=d.idanagrafica_dipe";
+    
     public static Collection<Dipendente> getDipendenteList() throws Exception {
 
         Connection con = null;
@@ -179,105 +183,74 @@ public class DipendenteDao {
         return list;
     }
 
+    
+    public Collection<InfoListaContratti> getListContrattiBase(String q) throws Exception {
+        //dao per la lista dei datori e relativi dipendenti e contratti sia attivi che cessati
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        InfoListaContratti datoreContratti;
+        ArrayList<InfoListaContratti> list = new ArrayList<InfoListaContratti>();
+        try {
+            con = DBManager.getConnection();
+            ps = con.prepareStatement(q);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                datoreContratti = new InfoListaContratti();
+                datoreContratti.setCognome(rs.getString("ddl.cognome"));
+                datoreContratti.setNome(rs.getString("ddl.nome"));
+                datoreContratti.setCognome_dip(rs.getString("cognome_dip"));
+                datoreContratti.setNomedip(rs.getString("nome_dip"));
+                datoreContratti.setData_assunzione(rs.getString("data_assunz"));
+               datoreContratti.setData_cessaz(rs.getString("data_cessaz"));
+                datoreContratti.setN_contratto(rs.getInt("idcontratto"));
+                datoreContratti.setProspetto_duff(rs.getString("prospetto_duff"));
+                list.add(datoreContratti);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
+        }
+        return list;
+    }
+    
      public Collection<InfoListaContratti> getListContratti() throws Exception {
         //dao per la lista dei datori e relativi dipendenti e contratti sia attivi che cessati
-
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        InfoListaContratti datoreContratti;
-        ArrayList<InfoListaContratti> list = new ArrayList<InfoListaContratti>();
-        try {
-            con = DBManager.getConnection();
-            ps = con.prepareStatement("select ddl.cognome, ddl.nome, d.nome as 'nome_dip', d.cognome as 'cognome_dip', c.data_assunz, c.data_cessaz, c.idcontratto, c.prospetto_duff from golddatabase.contratto c "
-                    + " inner join golddatabase.anagrafica_ddl ddl on c.anagrafica_ddl_idanagrafica_ddl=ddl.idanagrafica_ddl"
-                    + " inner join golddatabase.anagrafica_dipe d on c.anagrafica_dipe_idanagrafica_dipe=d.idanagrafica_dipe order by ddl.cognome");
-
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                datoreContratti = new InfoListaContratti();
-                datoreContratti.setCognome(rs.getString("ddl.cognome"));
-                datoreContratti.setNome(rs.getString("ddl.nome"));
-                datoreContratti.setCognome_dip(rs.getString("cognome_dip"));
-                datoreContratti.setNomedip(rs.getString("nome_dip"));
-                datoreContratti.setData_assunzione(rs.getString("data_assunz"));
-               datoreContratti.setData_cessaz(rs.getString("data_cessaz"));
-                datoreContratti.setN_contratto(rs.getInt("idcontratto"));
-                datoreContratti.setProspetto_duff(rs.getString("prospetto_duff"));
-                list.add(datoreContratti);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-            }
-            try {
-                ps.close();
-            } catch (Exception e) {
-            }
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        return list;
+         return getListContrattiBase(queryContratti + " order by ddl.cognome");
     }
-    
+     
      public Collection<InfoListaContratti> getListContrattiProfilo() throws Exception {
         //dao per la lista dei datori e relativi dipendenti e contratti sia attivi che cessati
-
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        InfoListaContratti datoreContratti;
-        ArrayList<InfoListaContratti> list = new ArrayList<InfoListaContratti>();
-        try {
-            con = DBManager.getConnection();
-            ps = con.prepareStatement("select ddl.cognome, ddl.nome, d.nome as 'nome_dip', d.cognome as 'cognome_dip', c.data_assunz, c.data_cessaz, c.idcontratto, c.prospetto_duff from golddatabase.contratto c "
-                    + " inner join golddatabase.anagrafica_ddl ddl on c.anagrafica_ddl_idanagrafica_ddl=ddl.idanagrafica_ddl"
-                    + " inner join golddatabase.anagrafica_dipe d on c.anagrafica_dipe_idanagrafica_dipe=d.idanagrafica_dipe order by c.prospetto_duff desc");
-
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                datoreContratti = new InfoListaContratti();
-                datoreContratti.setCognome(rs.getString("ddl.cognome"));
-                datoreContratti.setNome(rs.getString("ddl.nome"));
-                datoreContratti.setCognome_dip(rs.getString("cognome_dip"));
-                datoreContratti.setNomedip(rs.getString("nome_dip"));
-                datoreContratti.setData_assunzione(rs.getString("data_assunz"));
-               datoreContratti.setData_cessaz(rs.getString("data_cessaz"));
-                datoreContratti.setN_contratto(rs.getInt("idcontratto"));
-                datoreContratti.setProspetto_duff(rs.getString("prospetto_duff"));
-                list.add(datoreContratti);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            try {
-                rs.close();
-            } catch (Exception e) {
-            }
-            try {
-                ps.close();
-            } catch (Exception e) {
-            }
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
-        return list;
+         return getListContrattiBase(queryContratti + " order by c.prospetto_duff desc");
+    }
+     
+      public Collection<InfoListaContratti> getListContrattiNonCessati() throws Exception {
+        //dao per la lista dei datori e relativi dipendenti e contratti sia attivi che cessati
+        return getListContrattiBase(queryContratti + " WHERE c.data_cessaz is null order by ddl.cognome");
     }
     
-    
+      public Collection<InfoListaContratti> getListContrattiCessati() throws Exception {
+        //dao per la lista dei datori e relativi dipendenti e contratti sia attivi che cessati
+        return getListContrattiBase(queryContratti + " WHERE c.data_cessaz is not null order by ddl.cognome");
+    }
+      
     public InfoContratto getContrattobyID(String idcontratto) throws Exception {
         //dao per estrarre tutte le info di un contratto in base all'id contratto
 

@@ -123,7 +123,44 @@ public class ListeDdlDipeAction extends ActionSupport {
         }
     }
     
+    public String getTabellaContrattiCessati() {
+
+        try {
+            HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+            DipendenteDao dip = new DipendenteDao();
+            ArrayList<InfoListaContratti> c = new ArrayList<InfoListaContratti>();
+
+            c = (ArrayList<InfoListaContratti>) dip.getListContrattiCessati();
+            request.setAttribute("contratti", c);
+
+            return SUCCESS;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ERROR;
+        }
+    }
     
+    public String getTabellaContrattiNonCessati() {
+
+        try {
+            HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+            DipendenteDao dip = new DipendenteDao();
+            ArrayList<InfoListaContratti> c = new ArrayList<InfoListaContratti>();
+
+            c = (ArrayList<InfoListaContratti>) dip.getListContrattiNonCessati();
+                    
+                    request.setAttribute("contratti", c);
+
+            return SUCCESS;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ERROR;
+        }
+    }
     
      public ArrayList<String> getSceltaCitta() {
         return sceltaCitta;

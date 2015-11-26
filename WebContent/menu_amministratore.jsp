@@ -35,7 +35,7 @@
             <td><form action="anagraficadipendenti">
                     <input class="myMenuButton" type="submit" value="Anagrafica Lavoratori / Nuovo Contratto">
                 </form> </td>
-            <td> <form action="listacontratti">
+            <td> <form action="getTabellaContratti">
                     <input class="myMenuButton " type="submit" value="Lista Contratti"> 
                 </form></td>    
             <td><form action="fogliriepilogativi" >

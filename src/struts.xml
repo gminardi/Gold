@@ -75,11 +75,7 @@
             <result name="success">/anagrafica_dipe.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
-        <action name="listacontratti" class="action.ListeDdlDipeAction" method="getTabellaContratti">
-            <result name="success">/lista_contratti.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>
-        <action name="listacontrattiprofilo" class="action.ListeDdlDipeAction" method="getTabellaContrattiProfilo">
+        <action name="*" class="action.ListeDdlDipeAction" method="{1}">
             <result name="success">/lista_contratti.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
