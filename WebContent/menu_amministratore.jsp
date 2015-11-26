@@ -1,8 +1,8 @@
 <%@page import="bean.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:include page="logo.jsp"></jsp:include>  
-    <!--    <hr/>  -->
+<jsp:include page="logo.jsp"></jsp:include>
+    
 <%@ taglib uri="/struts-tags" prefix="s" %> 
 
 <link rel="stylesheet" type="text/css" href="stylelogin.css">
