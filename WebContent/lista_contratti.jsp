@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="/struts-tags" prefix="s" %> 
+
 <link rel="stylesheet" type="text/css" href="stylelogin.css">
 
 <jsp:include page="menu_amministratore.jsp"></jsp:include>  
@@ -28,8 +29,8 @@
     <table style="width: 80%; background-color: white">
         <tr>
             <td style="font-size: medium"><h1>Contratti</h1></td>
-            <td><form action="listacontratti"><input type="submit" value="Ordina Tabella per COGNOME"></form></td>
-            <td><form action="listacontrattiprofilo"><input type="submit" value="Ordina Tabella per PROFILO"></form></td>
+            <td><form action="listacontratti"><input class="myOKButton" type="submit" value="Ordina Tabella per COGNOME"></form></td>
+            <td><form action="listacontrattiprofilo"><input class="myOKButton" type="submit" value="Ordina Tabella per PROFILO"></form></td>
         </tr>
     </table>
     <body>
