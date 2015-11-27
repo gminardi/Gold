@@ -14,7 +14,7 @@
 
         <div style="height:300px; overflow:auto"> 
 
-            <table style="width: 90%; border-bottom-color: gray; border-width: 1px;" border = 0>
+            <table style="width: 100%; border-bottom-color: gray; border-width: 1px;" border = 0>
                 <thead class="title">
                     <tr>
                         <th>&nbsp;</th>
