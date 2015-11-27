@@ -14,7 +14,7 @@
 
         <div style="height:300px; overflow:auto"> 
 
-            <table style="width: 80%; border-bottom-color: gray; border-width: 2px;" border = 0>
+            <table style="width: 100%; border-bottom-color: gray; border-width: 2px;" border = 0>
                 <thead class="title">
                     <tr>
                         <th>Cognome</th>
